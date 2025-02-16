@@ -3,7 +3,8 @@ use crate::{
     ops::{Coroutine, GeneratorState},
     rc::{engine::Airlock, Co},
 };
-use std::{future::Future, pin::Pin};
+use core::{future::Future, pin::Pin};
+use alloc::boxed::Box;
 
 /// This is a generator which stores its state on the heap.
 ///

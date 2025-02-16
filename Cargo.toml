@@ -18,7 +18,7 @@ include = ["Cargo.toml", "README-crates-io.md", "src/**/*.rs"]
 futures-core = { version = "0.3.1", optional = true }
 genawaiter-proc-macro = { version = "0.99.1", path = "./genawaiter-proc-macro", optional = true }
 genawaiter-macro = { version = "0.99.1", path = "./genawaiter-macro" }
-proc-macro-hack = { version = "0.5", optional = true }
+#proc-macro-hack = { version = "0.5", optional = true }
 
 [workspace]
 members = ["genawaiter-macro", "genawaiter-proc-macro"]
@@ -30,8 +30,9 @@ rustversion = "1.0.2"
 trybuild = "1"
 
 [features]
-default = ["proc_macro"]
+std = []
+default = ["proc_macro", "std"]
 futures03 = ["futures-core"]
 nightly = []
 strict = []
-proc_macro = ["genawaiter-proc-macro", "proc-macro-hack", "genawaiter-macro/proc_macro"]
+proc_macro = ["genawaiter-proc-macro", "genawaiter-macro/proc_macro"]

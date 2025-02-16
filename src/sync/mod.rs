@@ -355,6 +355,7 @@ mod tests {
         GeneratorState,
     };
     use futures::executor::block_on;
+    use alloc::vec::Vec;
     use std::{
         cell::{Cell, RefCell},
         future::Future,

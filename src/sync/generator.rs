@@ -3,7 +3,8 @@ use crate::{
     ops::{Coroutine, GeneratorState},
     sync::{engine::Airlock, Co},
 };
-use std::{future::Future, pin::Pin};
+use core::{future::Future, pin::Pin};
+use alloc::boxed::Box;
 
 /// This is a generator which can be shared between threads.
 ///

@@ -261,13 +261,20 @@ resume argument type to `()`, but in a `Coroutine` it can be anything.
 #![warn(missing_docs, clippy::cargo, clippy::pedantic)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
+#![no_std]
+
+extern crate alloc;
+
+#[cfg(feature = "std")]
+extern crate std;
+
 #[cfg(test)]
 extern crate self as genawaiter;
 
 pub use crate::ops::{Coroutine, Generator, GeneratorState};
 
-#[cfg(feature = "proc_macro")]
-use proc_macro_hack::proc_macro_hack;
+// #[cfg(feature = "proc_macro")]
+// use proc_macro_hack::proc_macro_hack;
 
 /// Creates a producer for use with [`sync::Gen`].
 ///
@@ -290,7 +297,7 @@ use proc_macro_hack::proc_macro_hack;
 /// # my_generator.resume();
 /// ```
 #[cfg(feature = "proc_macro")]
-#[proc_macro_hack]
+// #[proc_macro_hack]
 pub use genawaiter_proc_macro::sync_producer;
 
 /// Creates a producer for use with [`rc::Gen`].
@@ -314,12 +321,10 @@ pub use genawaiter_proc_macro::sync_producer;
 /// # my_generator.resume();
 /// ```
 #[cfg(feature = "proc_macro")]
-#[proc_macro_hack]
 pub use genawaiter_proc_macro::rc_producer;
 
 #[doc(hidden)] // This is not quite usable currently, so hide it for now.
 #[cfg(feature = "proc_macro")]
-#[proc_macro_hack]
 pub use genawaiter_proc_macro::stack_producer;
 
 mod core;
@@ -329,6 +334,7 @@ mod macros;
 mod ops;
 pub mod rc;
 pub mod stack;
+#[cfg(feature = "std")]
 pub mod sync;
 #[cfg(test)]
 mod testing;

@@ -1,5 +1,7 @@
-use crate::{core, core::Next};
-use std::{cell::Cell, rc::Rc};
+// use crate::{core, core::Next};
+use crate::core::Next;
+use core::cell::Cell;
+use alloc::rc::Rc;
 
 pub struct Airlock<Y, R>(Rc<Cell<Next<Y, R>>>);
 
@@ -15,7 +17,7 @@ impl<Y, R> Clone for Airlock<Y, R> {
     }
 }
 
-impl<Y, R> core::Airlock for Airlock<Y, R> {
+impl<Y, R> crate::core::Airlock for Airlock<Y, R> {
     type Yield = Y;
     type Resume = R;
 
@@ -39,4 +41,4 @@ impl<Y, R> core::Airlock for Airlock<Y, R> {
 /// theoretical you are feeling.
 ///
 /// [_See the module-level docs for examples._](.)
-pub type Co<Y, R = ()> = core::Co<Airlock<Y, R>>;
+pub type Co<Y, R = ()> = crate::core::Co<Airlock<Y, R>>;

@@ -1,15 +1,17 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::cargo, clippy::pedantic)]
 #![cfg_attr(feature = "strict", deny(warnings))]
+#![no_std]
+// extern crate proc_macro;
+extern crate alloc;
 
-extern crate proc_macro;
-
+use core::panic;
+use alloc::format;
 use crate::visit::YieldReplace;
 use proc_macro::TokenStream;
 use proc_macro_error::{abort, abort_call_site, proc_macro_error};
-use proc_macro_hack::proc_macro_hack;
 use quote::quote;
-use std::string::ToString;
+use alloc::string::ToString;
 use syn::{
     self,
     parse_macro_input,
@@ -26,7 +28,7 @@ use syn::{
 mod visit;
 
 #[proc_macro_attribute]
-#[proc_macro_error]
+// #[proc_macro_error]
 pub fn stack_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     let a = args.clone();
     // make sure it is a valid type
@@ -42,8 +44,8 @@ pub fn stack_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     tokens.into()
 }
 
-#[proc_macro_hack]
-#[proc_macro_error]
+#[proc_macro]
+// #[proc_macro_error]
 pub fn stack_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
@@ -60,7 +62,7 @@ pub fn stack_producer(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-#[proc_macro_error]
+// #[proc_macro_error]
 pub fn sync_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     let a = args.clone();
     // make sure it is a valid type
@@ -76,8 +78,8 @@ pub fn sync_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     tokens.into()
 }
 
-#[proc_macro_hack]
-#[proc_macro_error]
+#[proc_macro]
+// #[proc_macro_error]
 pub fn sync_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
@@ -93,7 +95,7 @@ pub fn sync_producer(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-#[proc_macro_error]
+// #[proc_macro_error]
 pub fn rc_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     let a = args.clone();
     // make sure it is a valid type
@@ -109,8 +111,8 @@ pub fn rc_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
     tokens.into()
 }
 
-#[proc_macro_hack]
-#[proc_macro_error]
+#[proc_macro]
+// #[proc_macro_error]
 pub fn rc_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
