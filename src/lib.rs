@@ -265,8 +265,8 @@ resume argument type to `()`, but in a `Coroutine` it can be anything.
 
 extern crate alloc;
 
-#[cfg(feature = "std")]
-extern crate std;
+// #[cfg(feature = "std")]
+// extern crate std;
 
 #[cfg(test)]
 extern crate self as genawaiter;
@@ -334,7 +334,6 @@ mod macros;
 mod ops;
 pub mod rc;
 pub mod stack;
-#[cfg(feature = "std")]
 pub mod sync;
 #[cfg(test)]
 mod testing;

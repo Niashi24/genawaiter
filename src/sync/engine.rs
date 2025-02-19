@@ -1,6 +1,6 @@
 use crate::{core::Next};
 use core::mem;
-use std::{
+use bevy_platform_support::{
     sync::{Arc, Mutex},
 };
 

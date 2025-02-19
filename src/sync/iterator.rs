@@ -29,7 +29,7 @@ impl<Y, F: Future<Output = ()>> Iterator for IntoIter<Y, F> {
 #[cfg(test)]
 mod tests {
     use crate::sync::{Co, Gen};
-    use std::iter::IntoIterator;
+    use core::iter::IntoIterator;
     use alloc::vec::Vec;
 
     async fn produce(mut co: Co<i32>) {

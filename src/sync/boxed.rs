@@ -21,7 +21,7 @@ impl<Y, R, C> GenBoxed<Y, R, C> {
     ///
     /// ```compile_fail
     /// # use genawaiter::sync::{Co, Gen, GenBoxed};
-    /// # use std::{future::Future, pin::Pin};
+    /// # use core::{future::Future, pin::Pin};
     /// #
     /// # async fn producer(co: Co<i32>) {
     /// #     for n in (1..).step_by(2).take_while(|&n| n < 10) { co.yield_(n).await; }
@@ -44,7 +44,7 @@ mod tests {
         ops::GeneratorState,
         sync::{Co, Gen},
     };
-    use std::sync::{Arc, Mutex};
+    use bevy_platform_support::sync::{Arc, Mutex};
 
     async fn odd_numbers_less_than_ten(mut co: Co<i32>) {
         for n in (1..).step_by(2).take_while(|&n| n < 10) {

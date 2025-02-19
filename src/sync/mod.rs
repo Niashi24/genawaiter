@@ -356,7 +356,7 @@ mod tests {
     };
     use futures::executor::block_on;
     use alloc::vec::Vec;
-    use std::{
+    use core::{
         cell::{Cell, RefCell},
         future::Future,
     };

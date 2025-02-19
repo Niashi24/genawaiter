@@ -9,7 +9,7 @@
 #![warn(clippy::pedantic)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
-use std::error::Error;
+use core::error::Error;
 
 #[cfg(not(feature = "proc_macro"))]
 fn main() {
